@@ -12,6 +12,7 @@ while response != 0:
 success = 1
 while success != 0:
 	success = os.system ("sudo mount -t cifs -o user=admin,password=xxx,rw,file_mode=0777,dir_mode=0777 //192.168.2.56/freigabe/ /home/pi/freigabe")
+	success = os.system ("sudo mount -t nfs 192.168.2.61:/data /data")
 	if success == True:
 		break;
 	time.sleep(1)
