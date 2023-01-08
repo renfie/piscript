@@ -11,9 +11,9 @@ else
     echo "The directory of the new server is " $3
 fi
 echo "do some update"
-#sudo apt update
+sudo apt update
 echo "rsync is installing"
-#sudo apt install rsync -y
+sudo apt install rsync -y
 
 if [ -f "$FILE" ]; then
     echo "$FILE exists..."
