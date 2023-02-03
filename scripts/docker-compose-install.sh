@@ -11,7 +11,7 @@ cd ~
 mkdir $PWD/docker-files
 
 echo "Update und Upgrade"
-sudo apt install sudo -y
+apt install sudo -y
 sudo apt update && apt full-upgrade -y
 
 echo "curl installieren"
