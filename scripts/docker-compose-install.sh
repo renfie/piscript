@@ -26,7 +26,7 @@ sh get-Docker.sh
 rm get-Docker.sh
 echo "notwendige Rechte anpassen"
 usermod -aG docker $USER
-newgrp docker
+#newgrp docker
 
 echo "Phyton installieren"
 sudo apt install -y python3 python3-pip -y
