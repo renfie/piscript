@@ -41,4 +41,4 @@ makeall (){
 makeall
 #pishrink
 
-sudo umount ${MOUNT_DIR}
+sudo umount $MOUNT_DIR
