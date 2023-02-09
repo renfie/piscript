@@ -3,10 +3,10 @@
 #set -x
 clear
 
-SMB_USER="..."
-SMB_PASS="..."
-SMB_DIR="//192.168.150.223/zv/EDV/Backup"
-MOUNT_DIR="/home/pi/mnt"
+SMB_USER="xxx"
+SMB_PASS="xxx"
+SMB_DIR="//yout_path/Backup/pi"
+MOUNT_DIR="/local_mountdir"
 
 sudo mount -t cifs -o vers=1.0,username=${SMB_USER},password=${SMB_PASS},rw,file_mode=0777,dir_mode=0777 ${SMB_DIR} ${MOUNT_DIR}
 
@@ -25,10 +25,6 @@ image=${mount}${mount2}"/"$img
 imagepath=${mount}${mount2}"/"
 
 
-makeall
-
-sudo umount ${MOUNT_DIR}
-
 raspibackup () {
    sudo raspiBackup
 }
@@ -41,3 +37,8 @@ makeall (){
   raspibackup
   pishrink
 }
+
+makeall
+#pishrink
+
+sudo umount ${MOUNT_DIR}
