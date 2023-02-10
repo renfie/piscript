@@ -18,7 +18,7 @@ pruefer (){
 if [ "$pruefung" = "0" ]
 then
     echo "$paket ist nicht installiert und wird jetzt installiert"
-    #update
+    update
 else
     echo "$paket ist installiert"
 fi
