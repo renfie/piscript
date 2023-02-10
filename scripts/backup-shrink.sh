@@ -2,14 +2,23 @@
 #Ausgaben prüfen
 #set -x
 clear
-
-SMB_USER="xxx"
-SMB_PASS="xxx"
-SMB_DIR="//xxxx/Backup/pi"
+SMB_USER="username"
+SMB_PASS="password"
+SMB_DIR="//ip-adress/Backup/pi"
 MOUNT_DIR="/home/pi/mnt"
 
-sudo mount -t cifs -o vers=1.0,username=${SMB_USER},password=${SMB_PASS},rw,file_mode=0777,dir_mode=0777 ${SMB_DIR} ${MOUNT_DIR}
-sudo raspiBackup
+#mounten
+mounten (){
+  sudo mount -t cifs -o vers=1.0,username=${SMB_USER},password=${SMB_PASS},rw,file_mode=0777,dir_mode=0777 ${SMB_DIR} ${MOUNT_DIR}
+}
+unmount (){
+  sudo umount $MOUNT_DIR
+}
+backup (){
+  mounten
+  sudo raspiBackup
+  unmount
+}
 
 host=`hostname`
 mount="/home/pi/mnt/${host}/"
@@ -24,9 +33,32 @@ image=${mount}${mount2}"/"$img
 imagepath=${mount}${mount2}"/"
 
 pishrink () {
-   pishrink.sh ${image}
+  mounten
+  sudo pishrink.sh ${image}
+  unmount
 }
 
-pishrink
+all (){
+  echo "führe alles aus"
+  backup
+  pishrink
+}
+back (){
+  echo "führe Backup aus"
+  backup
+}
+shrink (){
+  echo "jetzt shrinken"
+  pishrink
+}
 
-sudo umount $MOUNT_DIR
+
+if [ "$1" = "all" ]; then
+  all
+elif [ "$1" = "back" ]; then
+  back
+elif [ "$1" = "shrink" ]; then
+  shrink
+else
+  echo "all, backup or shrink Parameter"
+fi
