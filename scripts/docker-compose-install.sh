@@ -25,7 +25,7 @@ echo "Docker installieren"
 sh get-Docker.sh
 rm get-Docker.sh
 echo "notwendige Rechte anpassen"
-usermod -aG docker $USER
+sudo usermod -aG docker $USER
 #newgrp docker
 
 echo "Phyton installieren"
@@ -38,4 +38,4 @@ echo "PortainerDate Volume erstellen"
 docker volume create portainer_data
 
 echo "Portainer starten"
-docker run -d -p 8000:8000 -p 9443:9443 --name portainer  -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data cr.portainer.io/portainer/portainer-ce:latest
+docker run -d -p 8000:8000 -p 9443:9443 --name portainer  --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data cr.portainer.io/portainer/portainer-ce:latest
