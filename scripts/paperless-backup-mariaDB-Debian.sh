@@ -22,7 +22,7 @@ MOUNT_DIR="/root/backup"
 # Das PAPERLESS Verzeichnis
 PAPERLESS_DIR="/root/docker-files/paperless/export"
 # Name und Ablageort des Datenbank Dumps
-THE_DUMP="/root/docker-files/paperless/db/backup/*"
+THE_DUMP="/root/docker-files/paperless/db/backup/$DATE_PREFIX-paperless-DB.sql"
 
 #SQL-Credentials
 SQL_USER="..."
