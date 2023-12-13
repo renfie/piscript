@@ -40,7 +40,7 @@ MariaDB_Container="maria-db"
 mount -t cifs -o vers=1.0,user=$SMB_USER,password=$SMB_PASS,rw,file_mode=0777,dir_mode=0777 $SMB_DIR $MOUNT_DIR
 
 # Erstellen mysql Dump
-docker exec $MariaDB_Container mysqldump -u $SQL_USER --password=$SQL_PASS $SQL_DB > $THE_DUMP
+docker exec $MariaDB_Container /usr/bin/mariadb-dump -u $SQL_USER --password=$SQL_PASS $SQL_DB > $THE_DUMP
 
 # Paperless-NGX Backup erstellen
 docker exec -it $PAPERLESS_Container document_exporter ../export
