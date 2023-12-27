@@ -52,4 +52,5 @@ tar -cvpf "$MOUNT_DIR/$DATE_PREFIX-paperless.tar" $PAPERLESS_DIR $THE_DUMP
 # Garbagge Collection
 rm $THE_DUMP &
 rm -rf $PAPERLESS_DIR/* &
+find $MOUNT_DIR -name "*.tar.gz" -daystart -mtime +14 -delete
 umount $MOUNT_DIR
