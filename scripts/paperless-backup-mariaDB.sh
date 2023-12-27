@@ -38,7 +38,7 @@ mysqldump -u $SQL_USER --password=$SQL_PASS $SQL_DB > $THE_DUMP
 docker exec -it Paperless document_exporter ../export
 
 # Alles in das Zielverzeichnis mit tar sichern
-tar -cvpf "$MOUNT_DIR/$DATE_PREFIX-paperless.tar" $PAPERLESS_DIR $THE_DUMP
+tar -czvpf "$MOUNT_DIR/$DATE_PREFIX-paperless.tar.gz" $PAPERLESS_DIR $THE_DUMP
 
 # Zielverzeichnis prüfen, Stopzeit festhalten
 echo "...Backup beendet (Stopzeit: $(date +%T))" >> $THE_LOG
@@ -47,3 +47,5 @@ ls -lh $MOUNT_DIR >> $THE_LOG
 # Garbagge Collection
 rm $THE_LOG $THE_DUMP &
 rm -rf $PAPERLESS_DIR/* &
+
+find $MOUNT_DIR -name "*.tar.gz" -daystart -mtime +14 -delete
