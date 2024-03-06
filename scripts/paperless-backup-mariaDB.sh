@@ -35,7 +35,7 @@ echo "Beginne Backup (Startzeit: $(date +%T))..." > $THE_LOG
 mysqldump -u $SQL_USER --password=$SQL_PASS $SQL_DB > $THE_DUMP
 
 # Paperless-NGX Backup erstellen
-docker exec -it Paperless document_exporter ../export
+docker exec Paperless document_exporter ../export
 
 # Alles in das Zielverzeichnis mit tar sichern
 tar -czvpf "$MOUNT_DIR/$DATE_PREFIX-paperless.tar.gz" $PAPERLESS_DIR $THE_DUMP
