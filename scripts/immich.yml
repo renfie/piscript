@@ -62,10 +62,8 @@ services:
     image: registry.hub.docker.com/tensorchord/pgvecto-rs:pg14-v0.2.0
     container_name: Immich-DB
     hostname: immich-db
-    environment:
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_DB: ${DB_DATABASE_NAME}
+    env_file:
+      - immich.env
     volumes:
       - ./db:/var/lib/postgresql/data
     restart: always
