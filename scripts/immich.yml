@@ -16,7 +16,7 @@ services:
       - immich-redis
       - immich-db
 
-  immich-microservices:
+   immich-microservices:
     image: ghcr.io/immich-app/immich-server:release
     command: [ "start.sh", "microservices" ]
     container_name: Immich-MICROSERVICES
@@ -31,7 +31,7 @@ services:
       - immich-redis
       - immich-db
 
-  immich-machine-learning:
+   immich-machine-learning:
     image: ghcr.io/immich-app/immich-machine-learning:release
     container_name: Immich-LEARNING
     hostname: immich-machine-learning
@@ -44,7 +44,7 @@ services:
     depends_on:
       - immich-db
 
-  immich-redis:
+   immich-redis:
     image: redis
     container_name: Immich-REDIS
     hostname: immich-redis
@@ -54,7 +54,7 @@ services:
       - ./redis:/data
     restart: always
 
-  immich-db:
+   immich-db:
     image: registry.hub.docker.com/tensorchord/pgvecto-rs:pg14-v0.2.0
     container_name: Immich-DB
     hostname: immich-db
