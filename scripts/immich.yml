@@ -1,0 +1,84 @@
+version: "3.9"
+services:
+  immich-redis:
+    image: redis
+    container_name: Immich-REDIS
+    hostname: immich-redis
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping || exit 1"]
+    environment:
+      - TZ=Europe/Berlin
+    volumes:
+      - ./redis:/data
+    restart: always
+
+  immich-db:
+    image: tensorchord/pgvecto-rs:pg16-v0.2.0
+    container_name: Immich-DB
+    hostname: immich-db
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "immich", "-U", "immichuser"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    environment:
+      - TZ=Europe/Berlin
+      - POSTGRES_DB=immich
+      - POSTGRES_USER=immichuser
+      - POSTGRES_PASSWORD=immichpw
+    restart: always
+
+  immich-server:
+    image: ghcr.io/immich-app/immich-server:release
+    command: ["start-server.sh"]
+    container_name: Immich-SERVER
+    hostname: immich-server
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - 2283:3001
+    volumes:
+      - ./upload:/usr/src/app/upload
+    restart: always
+    depends_on:
+      immich-redis:
+        condition: service_healthy
+      immich-db:
+        condition: service_started
+
+  immich-microservices:
+    image: ghcr.io/immich-app/immich-server:release
+    command: ["start-microservices.sh"]
+    container_name: Immich-MICROSERVICES
+    hostname: immich-microservices
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ./upload:/usr/src/app/upload
+      - ./micro:/usr/src/app/.reverse-geocoding-dump
+    restart: always
+    depends_on:
+      immich-redis:
+        condition: service_healthy
+      immich-db:
+        condition: service_started
+
+  immich-machine-learning:
+    image: ghcr.io/immich-app/immich-machine-learning:release
+    container_name: Immich-LEARNING
+    hostname: immich-machine-learning
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ./upload:/usr/src/app/upload
+      - ./cache:/cache
+    restart: always
+    depends_on:
+      immich-db:
+        condition: service_started
