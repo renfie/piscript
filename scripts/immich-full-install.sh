@@ -34,5 +34,8 @@ docker run -d -p 8000:8000 -p 9443:9443 --name portainer  --restart always -v /v
 echo "hole passende docker-compose.yml"
 curl -fsSL https://raw.githubusercontent.com/renfie/piscript/main/scripts/immich.yml -o docker-compose.yml
 
+echo "hole env-Datei"
+curl -fsSL https://raw.githubusercontent.com/renfie/piscript/main/scripts/immich.env -o immich.env
+
 echo "starte immich-Container"
 docker compose up -d
