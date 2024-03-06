@@ -1,7 +1,6 @@
 #!/bin/bash
 ############################################
-#####Docker, Docker Compose, Phyton,       #
-#####pip-package installieren und Portainer#
+#####Docker und Portainer installieren     #
 #####unter Port 9443 anlegen.              #
 #####         © renfie 2023                #
 ############################################
@@ -12,10 +11,10 @@ mkdir $PWD/docker-files
 
 echo "Update und Upgrade"
 apt install sudo -y
-sudo apt update && apt full-upgrade -y
+apt update && apt dist-upgrade -y
 
 echo "curl installieren"
-sudo apt install curl -y
+apt install curl -y
 
 echo "hole get-docker"
 curl -fsSL https://get.Docker.com -o get-Docker.sh
@@ -25,17 +24,7 @@ echo "Docker installieren"
 sh get-Docker.sh
 rm get-Docker.sh
 echo "notwendige Rechte anpassen"
-sudo usermod -aG docker $USER
-#newgrp docker
-
-echo "Phyton installieren"
-sudo apt install -y python3 python3-pip -y
-
-echo "docker-compose installieren"
-sudo pip3 install docker-compose
-
-echo "PortainerDate Volume erstellen"
-docker volume create portainer_data
+usermod -aG docker $USER
 
 echo "Portainer starten"
 docker run -d -p 8000:8000 -p 9443:9443 --name portainer  --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data cr.portainer.io/portainer/portainer-ce:latest
