@@ -15,9 +15,6 @@ mkdir -p redis db upload micro cache
 echo "Update und Upgrade"
 apt update && apt dist-upgrade -y
 
-echo "curl installieren"
-apt install curl -y
-
 echo "hole get-docker"
 curl -fsSL https://get.Docker.com -o get-Docker.sh
 chmod +x get-Docker.sh
@@ -32,10 +29,10 @@ echo "Portainer starten"
 docker run -d -p 8000:8000 -p 9443:9443 --name portainer  --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data cr.portainer.io/portainer/portainer-ce:latest
 
 echo "hole passende docker-compose.yml"
-curl -fsSL https://raw.githubusercontent.com/renfie/piscript/main/scripts/immich.yml -o docker-compose.yml
+wget -O docker-compose.yml https://raw.githubusercontent.com/renfie/piscript/main/scripts/immich.yml
 
 echo "hole env-Datei"
-curl -fsSL https://raw.githubusercontent.com/renfie/piscript/main/scripts/immich.env -o immich.env
+wget -O immich.env https://raw.githubusercontent.com/renfie/piscript/main/scripts/immich.env
 
 echo "starte immich-Container"
 docker compose up -d
