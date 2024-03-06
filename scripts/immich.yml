@@ -15,25 +15,13 @@ services:
     restart: always
 
   immich-db:
-    image: registry.hub.docker.com/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:90724186f0a3517cf6914295b5ab410db9ce23190a2d9d0b9dd6463e3fa298f0
+    image: registry.hub.docker.com/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:90724186f0a3517cf6914295b5ab410db9ce231>
     container_name: Immich-DB
     hostname: immich-db
     env_file:
       - immich.env
-    security_opt:
-      - no-new-privileges:true
-    healthcheck:
-      test: ["CMD", "pg_isready", "-q", "-d", "immich", "-U", "immichuser"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
     volumes:
       - ./db:/var/lib/postgresql/data
-    environment:
-      - TZ=Europe/Berlin
-      - POSTGRES_DB=${DB_DATABASE_NAME}
-      - POSTGRES_USER=${DB_USERNAME}
-      - POSTGRES_PASSWORD=${DB_DATABASE_NAME}
     restart: always
 
   immich-server:
@@ -43,8 +31,6 @@ services:
     hostname: immich-server
     env_file:
       - immich.env
-    security_opt:
-      - no-new-privileges:true
     ports:
       - 2283:3001
     volumes:
@@ -63,8 +49,6 @@ services:
     hostname: immich-microservices
     env_file:
       - immich.env
-    security_opt:
-      - no-new-privileges:true
     volumes:
       - ./upload:/usr/src/app/upload
       - ./micro:/usr/src/app/.reverse-geocoding-dump
@@ -81,8 +65,6 @@ services:
     hostname: immich-machine-learning
     env_file:
       - immich.env
-    security_opt:
-      - no-new-privileges:true
     volumes:
       - ./upload:/usr/src/app/upload
       - ./cache:/cache
