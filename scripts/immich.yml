@@ -5,7 +5,7 @@ services:
     command:
       - start.sh
       - immich
-    container_name: Immich-SERVER
+    container_name: immich-server
     hostname: immich-server
     env_file:
       - immich.env
@@ -23,7 +23,7 @@ services:
     command:
       - start.sh
       - microservices
-    container_name: Immich-MICROSERVICES
+    container_name: immich-microservices
     hostname: immich-microservices
     env_file:
       - immich.env
@@ -37,7 +37,7 @@ services:
       
   immich-machine-learning:
     image: ghcr.io/immich-app/immich-machine-learning:release
-    container_name: Immich-LEARNING
+    container_name: immich-learning
     hostname: immich-machine-learning
     env_file:
       - immich.env
@@ -50,7 +50,7 @@ services:
       
   immich-redis:
     image: redis
-    container_name: Immich-REDIS
+    container_name: immich-redis
     hostname: immich-redis
     environment:
       - TZ=Europe/Berlin
@@ -60,7 +60,7 @@ services:
     
   immich-db:
     image: registry.hub.docker.com/tensorchord/pgvecto-rs:pg14-v0.2.0
-    container_name: Immich-DB
+    container_name: immich-db
     hostname: immich-db
     env_file:
       - immich.env
