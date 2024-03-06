@@ -45,7 +45,7 @@ echo "...Backup beendet (Stopzeit: $(date +%T))" >> $THE_LOG
 ls -lh $MOUNT_DIR >> $THE_LOG
 
 # Garbagge Collection
-rm $THE_LOG $THE_DUMP &
+rm $THE_DUMP &
 rm -rf $PAPERLESS_DIR/* &
 
 find $MOUNT_DIR -name "*.tar.gz" -daystart -mtime +14 -delete
