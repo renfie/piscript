@@ -14,7 +14,7 @@ echo "Beginne Backup (Startzeit: $(date +%T))..." > $THE_LOG
 
 # Paperless-NGX Backup erstellen
 #docker exec -it Paperless document_exporter ../export
-docker exec  immich_postgres pg_dumpall -c -U postgres | gzip > "$MOUNT_DIR/$DATE_PREFIX_immich.sql.gz"
+docker exec  immich_postgres pg_dumpall -c -U postgres | gzip > "$MOUNT_DIR/$DATE_PREFIX-immich.sql.gz"
 
 # Zielverzeichnis prüfen, Stopzeit festhalten
 echo "...Backup beendet (Stopzeit: $(date +%T))" >> $THE_LOG
