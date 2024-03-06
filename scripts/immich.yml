@@ -39,6 +39,8 @@ services:
     command: ["start-server.sh"]
     container_name: Immich-SERVER
     hostname: immich-server
+    env_file:
+      - immich.env
     security_opt:
       - no-new-privileges:true
     ports:
@@ -57,6 +59,8 @@ services:
     command: ["start-microservices.sh"]
     container_name: Immich-MICROSERVICES
     hostname: immich-microservices
+    env_file:
+      - immich.env
     security_opt:
       - no-new-privileges:true
     volumes:
@@ -73,6 +77,8 @@ services:
     image: ghcr.io/immich-app/immich-machine-learning:release
     container_name: Immich-LEARNING
     hostname: immich-machine-learning
+    env_file:
+      - immich.env
     security_opt:
       - no-new-privileges:true
     volumes:
