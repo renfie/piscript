@@ -15,7 +15,7 @@ services:
     restart: always
 
   immich-db:
-    image: registry.hub.docker.com/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:90724186f0a3517cf6914295b5ab410db9ce231>
+    image: registry.hub.docker.com/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:90724186f0a3517cf6914295b5ab410db9ce231
     container_name: Immich-DB
     hostname: immich-db
     env_file:
