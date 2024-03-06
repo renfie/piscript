@@ -29,10 +29,10 @@ echo "Portainer starten"
 docker run -d -p 8000:8000 -p 9443:9443 --name portainer  --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data cr.portainer.io/portainer/portainer-ce:latest
 
 echo "hole passende docker-compose.yml"
-wget -O docker-compose.yml https://raw.githubusercontent.com/renfie/piscript/main/scripts/immich.yml
+wget -O docker-compose.yml https://raw.githubusercontent.com/renfie/piscript/main/scripts/immich/immich.yml
 
 echo "hole env-Datei"
-wget -O .env https://raw.githubusercontent.com/renfie/piscript/main/scripts/.env
+wget -O .env https://raw.githubusercontent.com/renfie/piscript/main/scripts/immich/.env
 
 echo "starte immich-Container"
 docker compose up -d
