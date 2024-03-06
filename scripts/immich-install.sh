@@ -17,7 +17,7 @@ echo "hole passende docker-compose.yml"
 wget -O docker-compose.yml https://raw.githubusercontent.com/renfie/piscript/main/scripts/immich.yml
 
 echo "hole env-Datei"
-wget -O immich.env https://raw.githubusercontent.com/renfie/piscript/main/scripts/immich.env
+wget -O .env https://raw.githubusercontent.com/renfie/piscript/main/scripts/.env
 
 echo "starte immich-Container"
 docker compose up -d
