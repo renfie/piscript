@@ -26,7 +26,7 @@ services:
 
   immich-server:
     image: ghcr.io/immich-app/immich-server:release
-    command: ["start-server.sh"]
+    command: [ "start.sh", "immich" ]
     container_name: Immich-SERVER
     hostname: immich-server
     env_file:
@@ -37,14 +37,12 @@ services:
       - ./upload:/usr/src/app/upload
     restart: always
     depends_on:
-      immich-redis:
-        condition: service_healthy
-      immich-db:
-        condition: service_started
+      - immich-redis
+      - immich-db
 
   immich-microservices:
     image: ghcr.io/immich-app/immich-server:release
-    command: ["start-microservices.sh"]
+    command: [ "start.sh", "microservices" ]
     container_name: Immich-MICROSERVICES
     hostname: immich-microservices
     env_file:
@@ -54,10 +52,8 @@ services:
       - ./micro:/usr/src/app/.reverse-geocoding-dump
     restart: always
     depends_on:
-      immich-redis:
-        condition: service_healthy
-      immich-db:
-        condition: service_started
+      - immich-redis
+      - immich-db
 
   immich-machine-learning:
     image: ghcr.io/immich-app/immich-machine-learning:release
@@ -70,5 +66,4 @@ services:
       - ./cache:/cache
     restart: always
     depends_on:
-      immich-db:
-        condition: service_started
+      - immich-db
