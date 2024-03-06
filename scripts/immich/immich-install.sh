@@ -14,10 +14,10 @@ rm -rf *
 mkdir -p redis db upload micro cache
 
 echo "hole passende docker-compose.yml"
-wget -O docker-compose.yml https://raw.githubusercontent.com/renfie/piscript/main/scripts/immich.yml
+wget -O docker-compose.yml https://raw.githubusercontent.com/renfie/piscript/main/scripts/immich/immich.yml
 
 echo "hole env-Datei"
-wget -O .env https://raw.githubusercontent.com/renfie/piscript/main/scripts/.env
+wget -O .env https://raw.githubusercontent.com/renfie/piscript/main/scripts/immich/.env
 
 echo "starte immich-Container"
 docker compose up -d
