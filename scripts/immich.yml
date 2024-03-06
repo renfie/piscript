@@ -29,9 +29,9 @@ services:
       - ./db:/var/lib/postgresql/data
     environment:
       - TZ=Europe/Berlin
-      - POSTGRES_DB=immich
-      - POSTGRES_USER=immichuser
-      - POSTGRES_PASSWORD=immichpw
+      - POSTGRES_DB=${DB_PASSWORD}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_DATABASE_NAME}
     restart: always
 
   immich-server:
