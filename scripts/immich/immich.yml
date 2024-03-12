@@ -9,7 +9,7 @@ services:
     command: [ "start.sh", "immich" ]
     volumes:
       - ./upload:/usr/src/app/upload
-      - /etc/localtime:/etc/localtime:ro
+      - ${EXTERNAL_PATH}:/usr/src/app/external
     env_file:
       - .env
     ports:
@@ -28,7 +28,7 @@ services:
     command: [ "start.sh", "microservices" ]
     volumes:
       - ./upload:/usr/src/app/upload
-      - /etc/localtime:/etc/localtime:ro
+      - ${EXTERNAL_PATH}:/usr/src/app/external
     env_file:
       - .env
     depends_on:
