@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  authelia:
+    image: authelia/authelia
+    container_name: authelia
+    networks:
+      - std
+    volumes:
+      - ./config:/config
+    ports:
+      - 9091:9091
+    restart: unless-stopped
+    healthcheck:
+      disable: true
+    environment:
+      - TZ=Europe/Berlin
+networks:
+  std:
+    external: true
