@@ -67,4 +67,4 @@ notifier:
     port: 587
     sender: user@blabla.de
 #  filesystem:
- #   /data/notifier.txt
+#     filename: /data/notifier.txt
