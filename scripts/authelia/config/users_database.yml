@@ -1,0 +1,13 @@
+###############################################################
+#                         Users Database                      #
+###############################################################
+ 
+# List of users
+users:
+  tester:
+    displayname: "Tester"
+    password: "$argon2id$v=19$m=65536,t=3,p=4$T09Emej3G2BiQ8ceklCgmw$b3f8NkC63NPFFiXMvOnXqGwDMpC//EGtNPNlv38vCAA"   #hash using docker run authelia/authelia:latest authelia hash-password 'tester'
+    email: tester@blabla.de
+    groups:
+      - admins
+      - dev
