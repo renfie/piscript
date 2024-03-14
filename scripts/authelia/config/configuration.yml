@@ -4,7 +4,9 @@
 
 jwt_secret:  HiereinganzlangesSecretmitganzvielenSonderzeichenundBuchstabenundZiffern
 default_redirection_url: https://auth.blabla.de
-theme: dark #light
+
+## The theme to display: light, dark, grey, auto.
+theme: 'dark'
 
 server:
   host: 0.0.0.0
