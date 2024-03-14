@@ -6,7 +6,7 @@
 users:
   tester:
     displayname: "Tester"
-    password: "$argon2id$v=19$m=65536,t=3,p=4$T09Emej3G2BiQ8ceklCgmw$b3f8NkC63NPFFiXMvOnXqGwDMpC//EGtNPNlv38vCAA"   #hash using docker run authelia/authelia:latest authelia hash-password 'tester'
+    password: "$argon2id$v=19$m=65536,t=3,p=4$T09Emej3G2BiQ8ceklCgmw$b3f8NkC63NPFFiXMvOnXqGwDMpC//EGtNPNlv38vCAA"   #hash using docker run --rm authelia/authelia:latest authelia crypto hash generate argon2 --password 'tester'
     email: tester@blabla.de
     groups:
       - admins
