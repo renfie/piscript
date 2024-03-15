@@ -11,4 +11,5 @@ Ressourcen-URL: https://auth.home.yourdomain.com/api/oidc/userinfo
 Weiterleitungs-URL: https://portainer.home.yourdomain.com
 Benutzerkennung: preferred_username
 Geltungsbereiche: openid profile groups email
+
 Hinweis: Stellen Sie sicher, dass Sie die obigen Dummy-URLs durch Ihre eigenen ersetzen.
