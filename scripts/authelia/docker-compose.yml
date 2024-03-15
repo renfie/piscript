@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   authelia:
-    image: authelia/authelia
+    image: authelia/authelia:4.37.5
     container_name: authelia
     networks:
       - std
