@@ -2,6 +2,7 @@
 
 botID=XXX
 chatID=XXX
+mailAddress=bla@bla.com
 
 test -f /usr/bin/speedtest || sudo apt install speedtest-cli -y
 
@@ -12,7 +13,7 @@ sed '2d' /home/pi/scripts/temp2.txt > /home/pi/scripts/temp.txt
 speedtest=$(cat /home/pi/scripts/temp.txt)
 
 #Ergebnis per Mail
-echo -e "Subject:Speedtest-Garten\n\n $speedtest \n\n" | sudo sendmail renefieler@gmail.com
+echo -e "Subject:Speedtest\n\n $speedtest \n\n" | sudo sendmail $mailAddress
 
 #Ergebnis per Telegram
 curl -X POST "https://api.telegram.org/$botID/sendMessage" -d "chat_id=$chatID&text=$speedtest"
