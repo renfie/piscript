@@ -1,11 +1,11 @@
 #!/bin/bash
 
 #cron:
-#* 22 * * * /home/pi/scripts/ctrlLED-Unifi.sh 192.178.3.2 off #Wohnzimmer
-#* 08 * * * /home/pi/scripts/ctrlLED-Unifi.sh 192.178.3.2 on #Wohnzimmer
+#* 22 * * * /home/pi/scripts/ctrlLED-Unifi.sh 192.168.3.2 off #Wohnzimmer
+#* 08 * * * /home/pi/scripts/ctrlLED-Unifi.sh 192.168.3.2 on #Wohnzimmer
 
-#* 08 * * * /home/pi/scripts/ctrlLED-Unifi.sh 192.178.3.3 off #Werkstatt
-#* 21 * * * /home/pi/scripts/ctrlLED-Unifi.sh 192.178.3.3 on #Werkstatt
+#* 08 * * * /home/pi/scripts/ctrlLED-Unifi.sh 192.168.3.3 off #Werkstatt
+#* 21 * * * /home/pi/scripts/ctrlLED-Unifi.sh 192.168.3.3 on #Werkstatt
 
 IP="$1"
 
