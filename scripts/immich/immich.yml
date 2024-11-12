@@ -13,24 +13,7 @@ services:
     env_file:
       - .env
     ports:
-      - 2283:3001
-    depends_on:
-      - redis
-      - database
-    restart: always
-
-  immich-microservices:
-    container_name: immich_microservices
-    image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
-    # extends: # uncomment this section for hardware acceleration - see https://immich.app/docs/features/hardware-transcoding
-    #   file: hwaccel.transcoding.yml
-    #   service: cpu # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
-    command: [ "start.sh", "microservices" ]
-    volumes:
-      - ./upload:/usr/src/app/upload
-      - ${EXTERNAL_PATH}:/usr/src/app/external
-    env_file:
-      - .env
+      - 2283:2283
     depends_on:
       - redis
       - database
